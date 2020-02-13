@@ -1,5 +1,5 @@
 #define LED_PIN 2
-
+int i;
 void setup() {
   // initialize digital pin LED_PIN as an output.
   pinMode(LED_PIN, OUTPUT);
@@ -12,11 +12,6 @@ void timedBlink(int interval) {
   delay(interval);                       // wait for a second
 }
 
-void blinky() {
-  timedBlink(250);
-  timedBlink(500);
-  timedBlink(1000);
-}
 void dimmer(int freq, int duty) {
   int period, onTime, offTime;
   period = 1000/freq;
@@ -27,7 +22,10 @@ void dimmer(int freq, int duty) {
   digitalWrite(LED_BUILTIN, LOW);
   delay(offTime);
 }
-void loop() {
-  blinky();
 
+void loop() {
+  for(i=100; i >= 0;) {
+    i= i - 10;
+    dimmer(i,100);
+  }
 }
